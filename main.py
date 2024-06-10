@@ -89,7 +89,7 @@ def main():
         subject,
         "data/resume.pdf"
     )
-    print(f"Message Id: {message['id']}")
+    print(f"Message Id: {message}")
 
 
 if __name__ == "__main__":
