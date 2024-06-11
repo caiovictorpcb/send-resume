@@ -26,8 +26,12 @@ def get_greeting():
 
 
 class EmailService:
-    def __init__(self):
+    def __init__(self, model_choice):
         self.service = None
+        self.model_choice = model_choice
+        self.nome_vaga = None
+        self.nome_empresa = None
+
 
     def authenticate(self):
         creds = None
@@ -46,20 +50,38 @@ class EmailService:
         self.service = build("gmail", "v1", credentials=creds)
 
 
-    def get_message(self):
-        message = input("Enter the message: ")
+    def get_message(self, **kwargs):
+        message = None
+        if self.model_choice == "1":
+            message = input("Deseja personalizar a mensagem? Caso não deseje, pressione Enter: ")
         if not message:
-            with open("data/message.txt", "r", encoding='utf-8') as file:
+            filename = "candidacy-model.txt" if self.model_choice == "1" else "interest-model.txt"
+            with open(f"data/{filename}", "r", encoding='utf-8') as file:
                 message = file.read()
-        message = f"{get_greeting()}\n\n{message}"
+        message = f"{get_greeting()}\n\n{message.format(**kwargs)}"
         return message
 
 
-    def send_email(self, to, subject, attachment=None):
+    def get_email_data(self):
+        nome_empresa = None
+        nome_vaga = None
+        fonte = None
+        if self.model_choice == "1":
+            nome_vaga = input("Digite o nome da vaga: ")
+            subject = f"Candidatura à vaga de {nome_vaga}"
+        elif self.model_choice == "2":
+            nome_empresa = input("Digite o nome da empresa: ")
+            fonte = input("Digite a fonte da vaga: ")
+            subject = f"Demonstração de interesse em futuras vagas na {nome_empresa}"
+        return subject, nome_empresa, nome_vaga, fonte
+
+
+    def send_email(self, attachment=None):
         message = MIMEMultipart()
-        content = self.get_message()
+        subject, nome_empresa, nome_vaga, fonte = self.get_email_data()
+        content = self.get_message(nome_empresa=nome_empresa, nome_vaga=nome_vaga, fonte=fonte)
         message.attach(MIMEText(content, 'plain', 'utf-8'))
-        message["To"] = to
+        message["To"] = input("Digite o e-mail do destinatário: ")
         message["From"] = "Caio Victor"
         message["Subject"] = subject
         if attachment:
@@ -75,21 +97,17 @@ class EmailService:
         encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
         create_message = {"raw": encoded_message}
         message = self.service.users().messages().send(userId="me", body=create_message).execute()
-
         return message
 
 
 def main():
-    email_service = EmailService()
+    model_choice = input("Deseja se candidatar(1) ou demonstrar interesse em futuras vagas(2)? ")
+    email_service = EmailService(model_choice)
     email_service.authenticate()
-    to = input("Enter the email address: ")
-    subject = input("Enter the subject: ")
     message = email_service.send_email(
-        to,
-        subject,
         "data/resume.pdf"
     )
-    print(f"Message Id: {message['id']}")
+    print(f"E-mail enviado com sucesso! ID: {message['id']}")
 
 
 if __name__ == "__main__":

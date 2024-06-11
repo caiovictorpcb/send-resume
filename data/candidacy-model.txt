@@ -1,4 +1,4 @@
-Venho por meio deste me candidatar a vaga de Programador e me colocar à disposição para contato futuro.
+Venho por meio deste me candidatar a vaga de {nome_vaga} e me colocar à disposição para contato futuro.
 Possuo ampla experiência na área de desenvolvimento web e desenvolvimento de ferramentas de ETL.
 
 Como consta no currículo anexado, utilizo diariamente várias das tecnologias requisitadas e possuo ampla vontade de aprendizagem.

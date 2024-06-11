@@ -1,0 +1,11 @@
+Meu nome é Caio Victor e recentemente conheci a {nome_empresa} através do {fonte}.
+
+Acredito que minha experiência e habilidades possam agregar valor à equipe de vocês. Tenho 3 anos de experiência como Programador e, durante minha carreira, desenvolvi habilidades em desenvolvimento web (React, Node, Nest, Express) e desenvolvimento de scripts focados em ETL (Python).
+
+Gostaria de me colocar à disposição para futuras oportunidades que possam surgir na {nome_empresa}. Deixo meu currículo em anexo e estou disponível para uma conversa ou entrevista a qualquer momento que seja conveniente para vocês.
+
+Agradeço desde já.
+
+Atenciosamente,
+
+Caio Victor
