@@ -48,10 +48,11 @@ class EmailService:
 
     def get_message(self):
         message = input("Enter the message: ")
+        nome = input('Seu nome: ')
         if not message:
             with open("data/message.txt", "r", encoding='utf-8') as file:
                 message = file.read()
-        message = f"{get_greeting()}\n\n{message}"
+        message = f"{get_greeting()}\n\n{message.format(meu_nome=nome)}"
         return message
 
 
