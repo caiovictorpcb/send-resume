@@ -1,13 +1,10 @@
 
-# Ideia
+# SendResume
+Automate the sending of emails for job applications.
 
-Automatizar o envio de e-mails para candidaturas em vagas de emprego.
+## Instructions to run
 
-
-
-## Instruções para rodar
-
-1. Deve possuir o arquivo "credentials.json" e "token.json" no diretório raiz (entrar em contato com [@caiovictorpcb](https://github.com/caiovictorpcb))
-2. Deve instalar todas as libs (pip install -r requirements.txt)
-3. python main.py
-4. Seguir as instruções  
+1. Must have the "credentials.json" and "token.json" files in the root directory (contact [@caiovictorpcb](https://github.com/caiovictorpcb)).  
+2. Must install all libraries (pip install -r requirements.txt).  
+3. python main.py  
+4. Follow the instructions.
